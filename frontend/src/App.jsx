@@ -27,10 +27,7 @@ function App() {
   const [description, setDescription] = useState('');
   const [urgency, setUrgency] = useState('Low');
 
-  // Agent Assignment Form State
   const [agentName, setAgentName] = useState('');
-
-  const API_URL = 'http://localhost:5000/api/tickets';
 
   useEffect(() => {
     if (isAuthenticated) {
