@@ -15,6 +15,11 @@ function App() {
   const [userRole, setUserRole] = useState(localStorage.getItem('role') || '');
   const [loggedInUser, setLoggedInUser] = useState(localStorage.getItem('username') || '');
 
+  // Dynamic API URL for Render Deployment
+  const API_URL = import.meta.env.VITE_API_URL 
+    ? `${import.meta.env.VITE_API_URL}/api`
+    : 'http://localhost:5000/api';
+
   // Form State
   const [customerName, setCustomerName] = useState('');
   const [subject, setSubject] = useState('');
@@ -39,7 +44,7 @@ function App() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/login', { username: loginUser, password: loginPass });
+      const res = await axios.post(`${API_URL}/login`, { username: loginUser, password: loginPass });
       if (res.data.token) {
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('role', res.data.role);
@@ -67,7 +72,7 @@ function App() {
       const role = localStorage.getItem('role');
       const user = localStorage.getItem('username');
       const query = role === 'customer' ? `?customer_name=${user}` : '';
-      const res = await axios.get(API_URL + query);
+      const res = await axios.get(`${API_URL}/tickets${query}`);
       setTickets(res.data);
     } catch (error) {
       console.error("Error fetching tickets", error);
@@ -120,9 +125,9 @@ function App() {
           alert('Ticket is resolved and locked.');
           return;
         }
-        await axios.put(`${API_URL}/${currentTicket._id}`, payload);
+        await axios.put(`${API_URL}/tickets/${currentTicket._id}`, payload);
       } else {
-        await axios.post(API_URL, payload);
+        await axios.post(`${API_URL}/tickets`, payload);
       }
       fetchTickets();
       closeModal();
@@ -137,7 +142,7 @@ function App() {
       return;
     }
     try {
-      await axios.put(`${API_URL}/${id}/assign`, { agent_name: agent });
+      await axios.put(`${API_URL}/tickets/${id}/assign`, { agent_name: agent });
       fetchTickets();
       if (currentTicket && currentTicket._id === id) closeModal();
     } catch (error) {
@@ -147,7 +152,7 @@ function App() {
 
   const handleStatusChange = async (id, status) => {
     try {
-      await axios.put(`${API_URL}/${id}`, { status });
+      await axios.put(`${API_URL}/tickets/${id}`, { status });
       fetchTickets();
       if (currentTicket && currentTicket._id === id) closeModal();
     } catch (error) {
@@ -158,7 +163,7 @@ function App() {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this ticket?")) {
       try {
-        await axios.delete(`${API_URL}/${id}`);
+        await axios.delete(`${API_URL}/tickets/${id}`);
         fetchTickets();
       } catch (error) {
         alert("Error deleting ticket");
