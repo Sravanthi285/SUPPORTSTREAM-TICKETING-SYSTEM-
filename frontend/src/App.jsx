@@ -251,7 +251,9 @@ function App() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <button className="btn-primary" onClick={() => openModal()}>+ Create Ticket</button>
+          {!isAdmin && (
+            <button className="btn-primary" onClick={() => openModal()}>+ Create Ticket</button>
+          )}
         </div>
         <table>
           <thead>
