@@ -1,0 +1,46 @@
+[
+  {
+    "customer_name": "John Doe",
+    "subject": "System crash after update",
+    "category": "Technical",
+    "description": "My dashboard is not loading after the latest version update today.",
+    "urgency": "High",
+    "status": "Open",
+    "agent_assigned": null,
+    "createdAt": "2026-04-06T08:00:00.000Z",
+    "updatedAt": "2026-04-06T08:00:00.000Z"
+  },
+  {
+    "customer_name": "Jane Smith",
+    "subject": "Invoice mismatch",
+    "category": "Billing",
+    "description": "I was charged twice for the premier plan. Please issue a refund.",
+    "urgency": "High",
+    "status": "Assigned",
+    "agent_assigned": "Support Agent A",
+    "createdAt": "2026-04-06T07:30:00.000Z",
+    "updatedAt": "2026-04-06T07:45:00.000Z"
+  },
+  {
+    "customer_name": "Michael Brown",
+    "subject": "Lost my password",
+    "category": "General",
+    "description": "Cannot login to my account, reset link not arriving.",
+    "urgency": "Low",
+    "status": "Resolved",
+    "agent_assigned": "Support Agent B",
+    "createdAt": "2026-04-05T09:00:00.000Z",
+    "updatedAt": "2026-04-05T09:30:00.000Z"
+  },
+  {
+    "customer_name": "Emily Davis",
+    "subject": "Old neglected ticket",
+    "category": "General",
+    "description": "I asked a question yesterday but nobody replied.",
+    "urgency": "Medium",
+    "status": "Escalated",
+    "agent_assigned": null,
+    "createdAt": "2026-04-04T12:00:00.000Z",
+    "updatedAt": "2026-04-06T08:45:00.000Z"
+  }
+]
